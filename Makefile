@@ -1,4 +1,4 @@
-THEME=@jsonresume/jsonresume-theme-class
+THEME=jsonresume-theme-elegant
 
 .PHONY: pdf serve
 
@@ -14,11 +14,8 @@ ru:
 	resume export -r ./resume/ru/resume.json -t $(THEME) -f .pdf ./resume/ru/resume.pdf
 	resume export -r ./resume/ru/resume.json -t $(THEME) -f .html ./resume/ru/index.html
 
-# pdf:
-# 	resume export -t $(THEME) -f .pdf ./resume.pdf
-
-# html:
-# 	resume export -t $(THEME) -f .html 
-
-# serve:
-# 	resume serve -t $(THEME)
+ru-serve:
+	resume serve -r ./resume/ru/resume.json -t $(THEME) -p 8080
+	
+en-serve:
+	resume serve -r ./resume/en/resume.json -t $(THEME) -p 8081
