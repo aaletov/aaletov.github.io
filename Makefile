@@ -8,11 +8,11 @@ css:
 
 en:
 	resume export -r ./resume/en/resume.json -t $(THEME) -f .pdf ./resume/en/resume.pdf
-	resume export -r ./resume/en/resume.json -t $(THEME) -f .html ./resume/en/resume.html
+	resume export -r ./resume/en/resume.json -t $(THEME) -f .html ./resume/en/index.html
 
 ru:
 	resume export -r ./resume/ru/resume.json -t $(THEME) -f .pdf ./resume/ru/resume.pdf
-	resume export -r ./resume/ru/resume.json -t $(THEME) -f .html ./resume/ru/resume.html
+	resume export -r ./resume/ru/resume.json -t $(THEME) -f .html ./resume/ru/index.html
 
 # pdf:
 # 	resume export -t $(THEME) -f .pdf ./resume.pdf
