@@ -3,7 +3,8 @@
   "basics": {
     "name": "Артемий Поздняков",
     "label": "Разработчик Go",
-    "image": "https://github.com/aaletov/aaletov.github.io/static/photo.jpg",
+    "image": "https://lh3.googleusercontent.com/drive-viewer/AITFw-yvz4TSq5vyCk6vSIxgCnxVo7KVU5Nx5l93xZvm1FSBXHvMVX2QPiI8CxufG_fHmMdeWOwKaSkLASBxqM4VCt6vV0PP=s1600",
+    "picture": "https://lh3.googleusercontent.com/drive-viewer/AITFw-yvz4TSq5vyCk6vSIxgCnxVo7KVU5Nx5l93xZvm1FSBXHvMVX2QPiI8CxufG_fHmMdeWOwKaSkLASBxqM4VCt6vV0PP=s1600",
     "email": "aapozdnyakove@gmail.com",
     "phone": "+7 (922) 249-69-44",
     "url": "http://aapozdnyakove.ru",
@@ -16,6 +17,21 @@
       "region": "Россия"
     },
     "profiles": [
+      {
+        "network": "Github",
+        "username": "aaletov",
+        "url": "https://github.com/aaletov"
+      },
+      {
+        "network": "Gitlab",
+        "username": "aapozd",
+        "url": "https://gitlab.com/aapozd"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "artemy-pozdnyakov-b7972b233",
+        "url": "https://www.linkedin.com/in/artemy-pozdnyakov-b7972b233/"
+      },
       {
         "network": "Telegram",
         "username": "aaletov",
@@ -32,7 +48,7 @@
       "url": "https://dell.com",
       "startDate": "2022-02-01",
       "endDate": "2022-08-01",
-      "summary": "Занимался изучением open-source проекта компании Dell - csi-baremetal, CSI-драйвера для kubernetes, предназначенного для управления физическими дисками в кластере.Проводил анализ существующего устройства работы драйвера с целью дальнейшего расширения его функциональности",
+      "summary": "Занимался изучением open-source проекта компании Dell - csi-baremetal, CSI-драйвера для kubernetes, предназначенного для управления физическими дисками в кластере. Проводил анализ существующего устройства работы драйвера с целью дальнейшего расширения его функциональности",
       "highlights": [
         "Go, Kubernetes, Kind, gRPC",
         "Выдвинул предложение реализовать поддержку Storage Capacity в проекте для снижения нагрузки на использовавшийся в проекте кастомный планировщик, разработал план реализации задачи, сравнил различные решения"
@@ -51,7 +67,7 @@
         "Go, PostgreSQL, Redis",
         "Gin, Ginkgo, Jet",
         "OpenAPI, oapi-codegen, Gitlab CI, JWT, OAuth",
-        "Переработал модуль аутентификации пользователей, устранил дублирование кода в различных функциях ограничения доступа к методами API",
+        "Переработал модуль аутентификации пользователей, устранил дублирование кода в различных функциях ограничения доступа к методам API",
         "Разработал микросервис для доступа к истории посещения ЦОД",
         "Реализовал с нуля BDD-тесты для BFF-микросервиса, реализовал обёртку для эффективного написания API-тестов, настроил генерацию отчётов по тестам, настроил интеграцию тестов в Gitlab",
         "Актуализировал спецификации OpenAPI модулей авторизации, тикетной системы и IaaS, настроил и внедрил генерацию Go-типов по спецификации API",
@@ -158,6 +174,7 @@
         "Vaadin",
         "PostgreSQL"
       ],
+      "url": "https://github.com/aaletov/spring-cs",
       "startDate": "2022-02-22",
       "endDate": "2022-05-28",
       "type": "coursework"
@@ -180,9 +197,16 @@
         "OpenAPI",
         "React"
       ],
+      "url": "https://github.com/aaletov/go-smo",
       "startDate": "2022-09-15",
       "endDate": "2022-11-17",
       "type": "coursework"
+    },
+    {
+      "name": "План реализации Storage Capacity в драйвере csi-baremetal",
+      "url": "https://github.com/dell/csi-baremetal/pull/903",
+      "type": "contribution",
+      "endDate": "2022-08-01"
     }
   ],
   "interests": [
