@@ -164,23 +164,6 @@
   ],
   "projects": [
     {
-      "name": "Система автоматизации работы больницы",
-      "description": "Курсовая работа по курсу \"Объектно-ориентированное программирование\" в СПбПУ",
-      "highlights": [
-        "Разработал веб-приложение на языке Java, позволяющее автоматировать работу больницы. Бэкенд написан с использованием паттерна MVC и фреймворка Spring, фронтенд использует фреймворк Vaadin"
-      ],
-      "keywords": [
-        "Java",
-        "Spring",
-        "Vaadin",
-        "PostgreSQL"
-      ],
-      "url": "https://github.com/aaletov/spring-cs",
-      "startDate": "2022-02-22",
-      "endDate": "2022-05-28",
-      "type": "coursework"
-    },
-    {
       "name": "Моделирование СМО",
       "description": "Курсовая работа по курсу \"Архитектура программных систем\" в СПбПУ",
       "highlights": [
@@ -204,8 +187,42 @@
       "type": "coursework"
     },
     {
+      "name": "nats-chat",
+      "description": "Чат, использующий для своей работы только терминал и работающий сервер nats",
+      "highlights": [
+        "Разработал систему генерации адресов по публичному ключу с использованием алгоритма двойного хеширования",
+        "Спроектировал API для коммуникации между клиентом и демоном по gRPC поверх unix-сокета",
+        "Реализовал поведенческие тесты на Python с использованием docker-compose"
+      ],
+      "keywords": [
+        "nats",
+        "chat",
+        "cryptography"
+      ],
+      "url": "https://github.com/aaletov/nats-chat",
+      "startDate": "2022-07-31",
+      "type": "project"
+    },
+    {
+      "name": "Система автоматизации работы больницы",
+      "description": "Курсовая работа по курсу \"Объектно-ориентированное программирование\" в СПбПУ",
+      "highlights": [
+        "Разработал веб-приложение на языке Java, позволяющее автоматировать работу больницы. Бэкенд написан с использованием паттерна MVC и фреймворка Spring, фронтенд использует фреймворк Vaadin"
+      ],
+      "keywords": [
+        "Java",
+        "Spring",
+        "Vaadin",
+        "PostgreSQL"
+      ],
+      "url": "https://github.com/aaletov/spring-cs",
+      "startDate": "2022-02-22",
+      "endDate": "2022-05-28",
+      "type": "coursework"
+    },
+    {
       "name": "План реализации Storage Capacity в драйвере csi-baremetal",
-      "url": "https://github.com/dell/csi-baremetal/pull/903",
+      "url": "https://github.com/dell/csi-baremetal/blob/8085a0a2b61703f6646f68684c31e6cc1c8f815f/docs/proposals/storage-capacity-proposal.md",
       "type": "contribution",
       "endDate": "2022-08-01"
     }
