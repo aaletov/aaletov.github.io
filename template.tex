@@ -1,30 +1,63 @@
 \documentclass{article}
 \usepackage{luacode}
+\usepackage{fontspec}
+\usepackage[russian, english]{babel}
+
+\setmainfont{Noto Serif}
 
 \begin{document}
 
 \begin{luacode}
 json = require "json"
 
+function texio.debug_nl (str)
+    texio.write_nl("-----> " .. str)
+    texio.write_nl("^^^")
+end
+
 function readJSON (filename)
-    f = io.open(filename, "r")
-    s = f:read("*all")
+    local f = io.open(filename, "r")
+    local s = f:read("*all")
     f:close()
     return s
 end
 
-local jsonString = readJSON("test.json")
-local decodedJSON = json.decode(jsonString)
+function tex.printf (pattern, str)
+    local formatted = string.format(pattern, str)
+    tex.print(formatted)
+end
 
-function yap ()
-    tex.print(decodedJSON.biba)
+local jsonString = readJSON("resume/ru/resume.json")
+decodedJSON = json.decode(jsonString)
+
+texio.debug_nl("Object type is: " .. type(decodedJSON))
+\end{luacode}
+
+\begin{luacode}
+tex.printf("\\author{%s}", decodedJSON.basics.name)
+tex.printf("\\title{%s}", decodedJSON.basics.label)
+\end{luacode}
+
+\maketitle
+
+\section{Опыт работы}
+
+\begin{luacode}
+texio.debug_nl("Object type is: " .. type(decodedJSON.work))
+for i, job in ipairs(decodedJSON.work) do
+    tex.printf("\\subsection{%s}", job.name)
+    tex.print(job.summary)
+    tex.print("\\begin{itemize}")
+    for j, highlight in ipairs(job.highlights) do
+        tex.printf("\\item %s", highlight)
+    end
+    tex.print("\\end{itemize}")
 end
 \end{luacode}
 
-\section{\LaTeX{}}
+
 
 \begin{luacode}
-yap()
 \end{luacode}
 
 \end{document}
