@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{luacode}
+
+\begin{document}
+
+\begin{luacode}
+json = require "json"
+
+function readJSON (filename)
+    f = io.open(filename, "r")
+    s = f:read("*all")
+    f:close()
+    return s
+end
+
+local jsonString = readJSON("test.json")
+local decodedJSON = json.decode(jsonString)
+
+function yap ()
+    tex.print(decodedJSON.biba)
+end
+\end{luacode}
+
+\section{\LaTeX{}}
+
+\begin{luacode}
+yap()
+\end{luacode}
+
+\end{document}
