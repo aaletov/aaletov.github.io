@@ -1,6 +1,6 @@
 THEME=jsonresume-theme-elegant
 
-.PHONY: pdf serve
+.PHONY: css en ru
 
 css:
 	mkdir -p ./css
