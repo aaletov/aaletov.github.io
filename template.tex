@@ -198,10 +198,11 @@ function get_education ()
 end
 
 function make_project_heading (project)
+    local name = string.format("\\href{%s}{%s}", project.url, project.name)
     local parsed_start_date = (project.startDate) and to_month_date(parse_date(project.startDate)) or ""
     local parsed_end_date = (project.endDate) and to_month_date(parse_date(project.endDate)) or ""
     local dates = table.concat({parsed_start_date, parsed_end_date}, " -- ")
-    local str_heading = string.format("\\resumeProjectHeading{\\textbf{%s}}{%s}", project.name, dates)
+    local str_heading = string.format("\\resumeProjectHeading{\\textbf{%s}}{%s}", name, dates)
     return str_heading
 end
 
@@ -232,7 +233,7 @@ function get_projects ()
 end
 
 function make_job_heading (job)
-    local name = job.name
+    local name = string.format("\\href{%s}{%s}", job.url, job.name)
     local location = job.location
     local position = job.position
     local parsed_start_date = (job.startDate) and to_month_date(parse_date(job.startDate)) or ""
@@ -272,7 +273,7 @@ end
 \begin{center}
     \textbf{\Huge \scshape \directlua{ tex.print(decodedJSON.basics.name) }} \\ \vspace{1pt}
     % Research ways to use inline luacode properly
-    \small \directlua{ tex.print(get_location()) } $|$
+    $|$ \small \directlua{ tex.print(get_location()) } $|$
     \small \directlua{ tex.print(decodedJSON.basics.phone) } $|$  \directlua{ tex.print(get_mail()) } $|$
     \directlua{ tex.print(get_profiles()) }
 \end{center}
