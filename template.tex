@@ -1,9 +1,90 @@
-\documentclass{article}
-\usepackage{luacode}
-\usepackage{fontspec}
-\usepackage[russian, english]{babel}
+\documentclass[letterpaper,11pt]{article}
 
+\usepackage{luacode}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
 \setmainfont{Noto Serif}
+\usepackage[english, russian]{babel}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{blindtext}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      #3 & #4 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -31,33 +112,202 @@ local jsonString = readJSON("resume/ru/resume.json")
 decodedJSON = json.decode(jsonString)
 
 texio.debug_nl("Object type is: " .. type(decodedJSON))
-\end{luacode}
 
-\begin{luacode}
-tex.printf("\\author{%s}", decodedJSON.basics.name)
-tex.printf("\\title{%s}", decodedJSON.basics.label)
-\end{luacode}
+function get_location ()
+    return table.concat({decodedJSON.basics.location.city, decodedJSON.basics.location.region}, ", ")
+end
 
-\maketitle
+function get_mail ()
+    local mail = decodedJSON.basics.email
+    local href = string.format("\\href{mailto:%s}{\\underline{%s}}", mail, mail)
+    return href
+end
 
-\section{Опыт работы}
+function make_href (link)
+    print_link = string.gsub(link, "https://", "")
+    print_link = string.gsub(print_link, "www.", "")
+    local href = string.format("\\href{https://%s}{\\underline{%s}}", link, print_link)
+    return href
+end
 
-\begin{luacode}
-texio.debug_nl("Object type is: " .. type(decodedJSON.work))
-for i, job in ipairs(decodedJSON.work) do
-    tex.printf("\\subsection{%s}", job.name)
-    tex.print(job.summary)
-    tex.print("\\begin{itemize}")
-    for j, highlight in ipairs(job.highlights) do
-        tex.printf("\\item %s", highlight)
+function get_profiles ()
+    local contacts = ""
+    -- while line not exceeded
+    for i, profile in ipairs(decodedJSON.basics.profiles) do
+        contacts = contacts .. make_href(profile.url)
+        if i ~= table.getn(decodedJSON.basics.profiles) then
+            contacts = contacts .. " $|$ "
+        end
     end
-    tex.print("\\end{itemize}")
+    return contacts
+end
+
+function parse_date (date)
+    return {
+        year=string.sub(date, 1, 4),
+        month=string.sub(date, 6, 7),
+        day=string.sub(date, 9, 10)
+    }
+end
+
+function to_month_date (date)
+    local month_from_number = {
+        ["01"]="Январь",
+        ["02"]="Февраль",
+        ["03"]="Март",
+        ["04"]="Апрель",
+        ["05"]="Май",
+        ["06"]="Июнь",
+        ["07"]="Июль",
+        ["08"]="Август",
+        ["09"]="Сентябрь",
+        ["10"]="Октябрь",
+        ["11"]="Ноябрь",
+        ["12"]="Декабрь"
+    }
+    return string.format("%s %s", month_from_number[date.month], date.year)
+end
+
+
+function make_education_heading (education)
+    local institution = education.institution
+    local location = ""
+    local faculty = table.concat({education.studyType, education.area}, ", ")
+    local start_year = parse_date(education.startDate).year
+    local end_year = parse_date(education.endDate).year
+    local dates = table.concat({start_year, end_year}, "-")
+    local str_heading = string.format("\\resumeSubheading{%s}{%s}{%s}{%s}", institution, location, faculty, dates)
+    return str_heading
+end
+
+function make_education_courses (education)
+    local heading = "\\resumeProjectHeading{\\textbf{Курсы:}}{ }"
+    local item_list_start = "\\resumeItemListStart"
+    local item_list_end = "\\resumeItemListEnd"
+    local courses = ""
+    for i, course in ipairs(education.courses) do
+        courses = courses .. string.format("\\resumeItem{%s}", course)
+    end
+    local str_courses = table.concat({heading, item_list_start, courses, item_list_end}, " ")
+    return str_courses
+end
+
+function get_education ()
+    local education = table.concat({make_education_heading(decodedJSON.education[1]), make_education_courses(decodedJSON.education[1])}, "\\\\")
+    return education
+end
+
+function make_project_heading (project)
+    local parsed_start_date = (project.startDate) and to_month_date(parse_date(project.startDate)) or ""
+    local parsed_end_date = (project.endDate) and to_month_date(parse_date(project.endDate)) or ""
+    local dates = table.concat({parsed_start_date, parsed_end_date}, " -- ")
+    local str_heading = string.format("\\resumeProjectHeading{\\textbf{%s}}{%s}", project.name, dates)
+    return str_heading
+end
+
+function make_project_highlights (project)
+    if project.highlights == nil then
+        return ""
+    end
+    local item_list_start = "\\resumeItemListStart"
+    local item_list_end = "\\resumeItemListEnd"
+    local highlights = string.format("\\resumeItem{%s}", project.description)
+    for i, highlight in ipairs(project.highlights) do
+        highlights = highlights .. string.format("\\resumeItem{%s}", highlight)
+    end
+    local str_highlights = table.concat({item_list_start, highlights, item_list_end}, " ")
+    return str_highlights
+end
+
+function make_project (project)
+    return string.format("%s %s", make_project_heading(project), make_project_highlights(project))
+end
+
+function get_projects ()
+    local projects = ""
+    for i, project in ipairs(decodedJSON.projects) do
+        projects = projects .. make_project(project)
+    end
+    return projects
+end
+
+function make_job_heading (job)
+    local name = job.name
+    local location = job.location
+    local position = job.position
+    local parsed_start_date = (job.startDate) and to_month_date(parse_date(job.startDate)) or ""
+    local parsed_end_date = (job.endDate) and to_month_date(parse_date(job.endDate)) or ""
+    local dates = table.concat({parsed_start_date, parsed_end_date}, " -- ")
+    local str_heading = string.format("\\resumeSubheading{%s}{%s}{%s}{%s}", name, location, position, dates)
+    return str_heading
+end
+
+function make_job (job)
+    return string.format("%s %s", make_job_heading(job), make_project_highlights(job))
+end
+
+function get_jobs ()
+    local jobs = ""
+    for i, job in ipairs(decodedJSON.work) do
+        jobs = jobs .. make_job(job)
+    end
+    return jobs
+end
+
+function get_skills ()
+    local skills = ""
+    for i, skill in ipairs(decodedJSON.skills) do
+        local area = skill.name
+        local subskills = table.concat(skill.keywords, ", ")
+        skills = skills .. string.format("\\textbf{%s}{: %s}", area, subskills)
+        if i ~= table.getn(decodedJSON.skills) then
+            skills = skills .. "\\\\"
+        end
+    end
+    return skills
 end
 \end{luacode}
 
 
+\begin{center}
+    \textbf{\Huge \scshape \directlua{ tex.print(decodedJSON.basics.name) }} \\ \vspace{1pt}
+    % Research ways to use inline luacode properly
+    \small \directlua{ tex.print(get_location()) } $|$
+    \small \directlua{ tex.print(decodedJSON.basics.phone) } $|$  \directlua{ tex.print(get_mail()) } $|$
+    \directlua{ tex.print(get_profiles()) }
+\end{center}
 
-\begin{luacode}
-\end{luacode}
+%-----------ABOUT ME------------
+\section{О себе}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \item \directlua{ tex.print(decodedJSON.basics.summary) }
+\end{itemize}
+
+%-----------EDUCATION-----------
+\section{Образование}
+  \resumeSubHeadingListStart
+    \directlua{ tex.print(get_education()) }
+
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Опыт}
+    \resumeSubHeadingListStart
+        \directlua{ tex.print(get_jobs()) }
+    \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Проекты}
+    \resumeSubHeadingListStart
+        \directlua{ tex.print(get_projects()) }
+    \resumeSubHeadingListEnd
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Технические навыки}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+        \directlua{ tex.print(get_skills()) }
+    }}
+ \end{itemize}
 
 \end{document}
