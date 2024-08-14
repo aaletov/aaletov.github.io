@@ -68,7 +68,7 @@
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
 
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{-}}$}
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
@@ -128,7 +128,7 @@ function get_profiles ()
     for i, profile in ipairs(decodedJSON.basics.profiles) do
         contacts = contacts .. make_href(profile.url)
         if i ~= table.getn(decodedJSON.basics.profiles) then
-            contacts = contacts .. " $|$ "
+            contacts = contacts .. " \\textbar "
         end
     end
     return contacts
@@ -267,8 +267,8 @@ end
 \begin{center}
     \textbf{\Huge \scshape \directlua{ tex.print(decodedJSON.basics.name) }} \\ \vspace{1pt}
     % Research ways to use inline luacode properly
-    $|$ \small \directlua{ tex.print(get_location()) } $|$
-    \small \directlua{ tex.print(decodedJSON.basics.phone) } $|$  \directlua{ tex.print(get_mail()) } $|$
+    \textbar \small \directlua{ tex.print(get_location()) } \textbar
+    \small \directlua{ tex.print(decodedJSON.basics.phone) } \textbar  \directlua{ tex.print(get_mail()) } \textbar
     \directlua{ tex.print(get_profiles()) }
 \end{center}
 
