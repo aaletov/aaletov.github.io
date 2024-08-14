@@ -14,7 +14,6 @@
 \usepackage{fontspec}
 \setmainfont{Noto Serif}
 \usepackage[english, russian]{babel}
-\usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{changepage}
 \usepackage{blindtext}
@@ -55,24 +54,16 @@
 
 \newcommand{\resumeSubheading}[4]{
   \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      #3 & #4 \\
-    \end{tabular*}\vspace{-7pt}
+    \textbf{#1} \hfill #2\hspace*{7pt} \\
+    #3 \hfill #4\hspace{7pt}\vspace{-7pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
+    \item \textit{\small#1} \hfill \textit{\small #2}\hspace{7pt}\vspace{-7pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
+    \item \small#1 \hfill #2\hspace{7pt}\vspace{-7pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
@@ -270,6 +261,8 @@ function get_skills ()
 end
 \end{luacode}
 
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{center}
     \textbf{\Huge \scshape \directlua{ tex.print(decodedJSON.basics.name) }} \\ \vspace{1pt}
