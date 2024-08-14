@@ -43,43 +43,72 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
+  \vspace{-4pt}\bfseries\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\titleformat{\subsection}[runin]{
+  \vspace{-4pt}\bfseries\raggedright\normalsize
+}{}{0em}{}[\vspace{-5pt}]
+
+\titleformat{\subsubsection}[runin]{
+  \vspace{-4pt}\bfseries\raggedright\normalsize
+}{}{0em}{}[\vspace{-5pt}]
 
 
 %-------------------------
 % Custom commands
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
+
+% experience is a superset of job, project and education
+\newcommand{\resumeExperienceHeading}[4]{
+    \subsection{#1}\hfill
+    \ifthenelse{\equal{#4}{}}{
+        #2
+    }{
+        \ifthenelse{\equal{#2}{}}{
+            #4
+        }{
+            #4, #2
+        }
+    }
+    \ifthenelse{\equal{#3}{}}{}{
+        \\[5pt]#3
+    }
 }
 
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \textbf{#1} \hfill #2\hspace*{7pt} \\
-    #3 \hfill #4\hspace{7pt}\vspace{-7pt}
+\newcommand{\resumeExperienceHighlight}[1]{
+  \item #1\vspace{-3pt}
 }
 
-\newcommand{\resumeSubSubheading}[2]{
-    \item \textit{\small#1} \hfill \textit{\small #2}\hspace{7pt}\vspace{-7pt}
+\newenvironment{experienceHighlights}{
+    \begin{itemize}[noitemsep, nosep]
+}{
+    \end{itemize}
 }
 
-\newcommand{\resumeProjectHeading}[2]{
-    \item \small#1 \hfill #2\hspace{7pt}\vspace{-7pt}
+\newenvironment{jobHighlights}{
+    \begin{experienceHighlights}
+}{
+    \end{experienceHighlights}
 }
 
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newenvironment{educationHighlights}{
+    \begin{experienceHighlights}
+}{
+    \end{experienceHighlights}
+}
 
-\renewcommand\labelitemii{$\vcenter{\hbox{-}}$}
+\newenvironment{projectHighlights}{
+    \begin{experienceHighlights}
+}{
+    \end{experienceHighlights}
+}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeJobHeading}[4]{\resumeExperienceHeading{#1}{#2}{#3}{#4}}
+\newcommand{\resumeEducationHeading}[4]{\resumeExperienceHeading{#1}{#2}{#3}{#4}}
+\newcommand{\resumeProjectHeading}[2]{\resumeExperienceHeading{#1}{#2}{}{}}
 
 %-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  LUA CODE HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -171,24 +200,24 @@ function make_education_heading (education)
     local start_year = parse_date(education.startDate).year
     local end_year = parse_date(education.endDate).year
     local dates = table.concat({start_year, end_year}, "-")
-    local str_heading = string.format("\\resumeSubheading{%s}{%s}{%s}{%s}", institution, location, faculty, dates)
+    local str_heading = string.format("\\resumeEducationHeading{%s}{%s}{%s}{%s}", institution, location, faculty, dates)
     return str_heading
 end
 
 function make_education_courses (education)
-    local heading = "\\resumeProjectHeading{\\textbf{Курсы:}}{ }"
-    local item_list_start = "\\resumeItemListStart"
-    local item_list_end = "\\resumeItemListEnd"
+    local item_list_start = "\\begin{educationHighlights}"
+    local item_list_end = "\\end{educationHighlights}"
     local courses = ""
     for i, course in ipairs(education.courses) do
-        courses = courses .. string.format("\\resumeItem{%s}", course)
+        courses = courses .. string.format("\\resumeExperienceHighlight{%s}", course)
     end
-    local str_courses = table.concat({heading, item_list_start, courses, item_list_end}, " ")
+    local str_courses = table.concat({"\\subsubsection{Курсы:}", item_list_start, courses, item_list_end}, " ")
     return str_courses
 end
 
 function get_education ()
     local education = table.concat({make_education_heading(decodedJSON.education[1]), make_education_courses(decodedJSON.education[1])}, "\\\\")
+    texio.debug_nl(education)
     return education
 end
 
@@ -205,11 +234,11 @@ function make_project_highlights (project)
     if project.highlights == nil then
         return ""
     end
-    local item_list_start = "\\resumeItemListStart"
-    local item_list_end = "\\resumeItemListEnd"
-    local highlights = string.format("\\resumeItem{%s}", project.description)
+    local item_list_start = "\\begin{projectHighlights}"
+    local item_list_end = "\\end{projectHighlights}"
+    local highlights = string.format("\\resumeExperienceHighlight{%s}", project.description)
     for i, highlight in ipairs(project.highlights) do
-        highlights = highlights .. string.format("\\resumeItem{%s}", highlight)
+        highlights = highlights .. string.format("\\resumeExperienceHighlight{%s}", highlight)
     end
     local str_highlights = table.concat({item_list_start, highlights, item_list_end}, " ")
     return str_highlights
@@ -224,7 +253,22 @@ function get_projects ()
     for i, project in ipairs(decodedJSON.projects) do
         projects = projects .. make_project(project)
     end
+    texio.debug_nl(projects)
     return projects
+end
+
+function make_job_highlights (project)
+    if project.highlights == nil then
+        return ""
+    end
+    local item_list_start = "\\begin{jobHighlights}"
+    local item_list_end = "\\end{jobHighlights}"
+    local highlights = string.format("\\resumeExperienceHighlight{%s}", project.description)
+    for i, highlight in ipairs(project.highlights) do
+        highlights = highlights .. string.format("\\resumeExperienceHighlight{%s}", highlight)
+    end
+    local str_highlights = table.concat({item_list_start, highlights, item_list_end}, " ")
+    return str_highlights
 end
 
 function make_job_heading (job)
@@ -234,12 +278,12 @@ function make_job_heading (job)
     local parsed_start_date = (job.startDate) and to_month_date(parse_date(job.startDate)) or ""
     local parsed_end_date = (job.endDate) and to_month_date(parse_date(job.endDate)) or ""
     local dates = table.concat({parsed_start_date, parsed_end_date}, " -- ")
-    local str_heading = string.format("\\resumeSubheading{%s}{%s}{%s}{%s}", name, location, position, dates)
+    local str_heading = string.format("\\resumeJobHeading{%s}{%s}{%s}{%s}", name, location, position, dates)
     return str_heading
 end
 
 function make_job (job)
-    return string.format("%s %s", make_job_heading(job), make_project_highlights(job))
+    return string.format("%s %s", make_job_heading(job), make_job_highlights(job))
 end
 
 function get_jobs ()
@@ -255,7 +299,7 @@ function get_skills ()
     for i, skill in ipairs(decodedJSON.skills) do
         local area = skill.name
         local subskills = table.concat(skill.keywords, ", ")
-        skills = skills .. string.format("\\textbf{%s}{: %s}", area, subskills)
+        skills = skills .. string.format("\\item[]\\textbf{%s}{: %s}\\vspace{-3pt}", area, subskills)
         if i ~= table.getn(decodedJSON.skills) then
             skills = skills .. "\\\\"
         end
@@ -277,35 +321,33 @@ end
 
 %-----------ABOUT ME------------
 \section{О себе}
-\begin{itemize}[leftmargin=0.15in, label={}]
-    \item \directlua{ tex.print(decodedJSON.basics.summary) }
-\end{itemize}
+\begin{adjustwidth}{0.15in}{}
+    \directlua{ tex.print(decodedJSON.basics.summary) }
+\end{adjustwidth}
 
 %-----------EDUCATION-----------
 \section{Образование}
-  \resumeSubHeadingListStart
+\begin{adjustwidth}{0.15in}{}
     \directlua{ tex.print(get_education()) }
+\end{adjustwidth}
 
-  \resumeSubHeadingListEnd
 
 %-----------EXPERIENCE-----------
 \section{Опыт}
-    \resumeSubHeadingListStart
-        \directlua{ tex.print(get_jobs()) }
-    \resumeSubHeadingListEnd
+\begin{adjustwidth}{0.15in}{}
+    \directlua{ tex.print(get_jobs()) }
+\end{adjustwidth}
 
 %-----------PROJECTS-----------
 \section{Проекты}
-    \resumeSubHeadingListStart
-        \directlua{ tex.print(get_projects()) }
-    \resumeSubHeadingListEnd
+\begin{adjustwidth}{0.15in}{}
+    \directlua{ tex.print(get_projects()) }
+\end{adjustwidth}
 
 %-----------PROGRAMMING SKILLS-----------
 \section{Технические навыки}
- \begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{
-        \directlua{ tex.print(get_skills()) }
-    }}
- \end{itemize}
+\begin{itemize}[leftmargin=0.15in, noitemsep, nosep]\small
+    \directlua{ tex.print(get_skills()) }
+\end{itemize}
 
 \end{document}
