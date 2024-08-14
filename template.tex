@@ -1,4 +1,5 @@
-\DocumentMetadata{pdfstandard=A-2b}
+% \DocumentMetadata{pdfstandard=A-2b}
+\DocumentMetadata{testphase=phase-III,testphase=math}
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{luacode}
@@ -10,13 +11,15 @@
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor=Artemy Pozdnyakov,pdftitle=Artemy Pozdnyakov's CV}
+
 \usepackage{fancyhdr}
 \usepackage{fontspec}
-\setmainfont{Noto Serif}
+\setmainfont{Noto Sans}
 \usepackage[english, russian]{babel}
 \usepackage{graphicx}
 \usepackage{changepage}
-\usepackage{blindtext}
+\usepackage{ifthen}
 
 
 \pagestyle{fancy}
