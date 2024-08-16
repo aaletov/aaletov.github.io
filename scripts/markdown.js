@@ -34,24 +34,31 @@ function dateMap(startDate, endDate) {
     return startDateText + " - " + endDateText;
 }
 
-function main() {
-    const template = fs.readFileSync("./template.md.mustache").toString("utf-8");
-    const file = fs.readFileSync("./resume/ru/resume.json");
-    const resume = JSON.parse(file);
+function compile(template, resume, out) {
+    templateSliced = template.split(".")
+    if (templateSliced.pop() != "mustache") {
+        throw Error("Not a mustache template");
+    }
 
-    resume.education.forEach(institution => {
+    const templateText = fs.readFileSync(template).toString("utf-8");
+    const file = fs.readFileSync(resume);
+    const resumeJson = JSON.parse(file);
+
+    resumeJson.education.forEach(institution => {
         const startYear = institution.startDate.slice(0, 4)
         const endYear = institution.endDate.slice(0, 4)
         institution.institutionDates = startYear + "-" + endYear;
     });
-    resume.work.forEach(job => {
+    resumeJson.work.forEach(job => {
         job.jobDates = dateMap(job.startDate, job.endDate)
     });
-    resume.projects.forEach(project => {
+    resumeJson.projects.forEach(project => {
         project.projectDates = dateMap(project.startDate, project.endDate)
     });
 
-    fs.writeFileSync("./template.md", Mustache.render(template, resume))
+    fs.writeFileSync(out, Mustache.render(templateText, resumeJson))
 }
 
-main()
+module.exports = {
+    "compile": compile,
+}

@@ -1,6 +1,6 @@
 THEME=jsonresume-theme-elegant
 
-.PHONY: css en ru
+.PHONY: css en ru md
 
 css:
 	mkdir -p ./css
@@ -12,3 +12,5 @@ en:
 ru:
 	npx resumed render ./resume/ru/resume.json -t $(THEME) -o ./resume/ru/index.html
 
+md:
+	npm run build
