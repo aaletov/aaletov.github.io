@@ -1,0 +1,39 @@
+# О себе
+{{{basics.summary}}}
+
+# Образование
+{{#education}}
+## {{{institution}}}
+{{{area}}}, {{{studyType}}}, {{{institutionDates}}}
+### Курсы
+{{#courses}}
+    - {{{.}}}
+{{/courses}}
+{{/education}}
+
+# Опыт
+{{#work}}
+## {{{name}}}
+{{{position}}}, {{{location}}}, {{{jobDates}}}
+{{{summary}}}
+{{#highlights}}
+    - {{{.}}}
+{{/highlights}}
+
+{{/work}}
+
+# Проекты
+{{#projects}}
+## {{{name}}}
+{{{projectDates}}}
+{{{description}}}
+{{#highlights}}
+    - {{{.}}}
+{{/highlights}}
+
+{{/projects}}
+
+# Навыки
+{{#skills}}
+    - {{{name}}}: {{#keywords}} {{{.}}}, {{/keywords}}
+{{/skills}}
