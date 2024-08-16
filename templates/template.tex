@@ -132,7 +132,7 @@ function tex.printf (pattern, str)
     tex.print(formatted)
 end
 
-local jsonString = readJSON("resume/ru/resume.json")
+local jsonString = readJSON("../resume/ru/resume.json")
 decodedJSON = json.decode(jsonString)
 
 texio.debug_nl("Object type is: " .. type(decodedJSON))

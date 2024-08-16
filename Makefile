@@ -14,3 +14,6 @@ ru:
 
 md:
 	npm run build
+
+latex:
+	cd templates && lualatex --output-directory=../resume/ru template.tex
