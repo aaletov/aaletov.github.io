@@ -30,7 +30,6 @@ function dateMap(startDate, endDate) {
 
     const startDateText = monthsMap.get(startDateParsed.month) + " " + startDateParsed.year;
     const endDateText = monthsMap.get(endDateParsed.month) + " " + endDateParsed.year;
-    console.log(startDateText)
 
     return startDateText + " - " + endDateText;
 }
@@ -51,7 +50,8 @@ function main() {
     resume.projects.forEach(project => {
         project.projectDates = dateMap(project.startDate, project.endDate)
     });
-    console.log(Mustache.render(template, resume));
+
+    fs.writeFileSync("./template.md", Mustache.render(template, resume))
 }
 
 main()
