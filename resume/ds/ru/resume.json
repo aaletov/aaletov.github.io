@@ -1,0 +1,256 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Артемий Поздняков",
+    "label": "Data Scientist",
+    "image": "https://lh3.googleusercontent.com/drive-viewer/AITFw-yvz4TSq5vyCk6vSIxgCnxVo7KVU5Nx5l93xZvm1FSBXHvMVX2QPiI8CxufG_fHmMdeWOwKaSkLASBxqM4VCt6vV0PP=s1600",
+    "picture": "https://lh3.googleusercontent.com/drive-viewer/AITFw-yvz4TSq5vyCk6vSIxgCnxVo7KVU5Nx5l93xZvm1FSBXHvMVX2QPiI8CxufG_fHmMdeWOwKaSkLASBxqM4VCt6vV0PP=s1600",
+    "email": "aapozdnyakove@gmail.com",
+    "phone": "+7 (922) 249-69-44",
+    "url": "http://aapozdnyakove.ru",
+    "summary": "Люблю находить новые решения к привычным задачам. Я имею опыт в бэкенд разработке и в настоящее время развиваюсь в области машинного обучения и анализа данных",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Санкт-Петербург",
+      "countryCode": "RU",
+      "region": "Россия"
+    },
+    "profiles": [
+      {
+        "network": "Github",
+        "username": "aaletov",
+        "url": "https://github.com/aaletov"
+      },
+      {
+        "network": "Gitlab",
+        "username": "aapozd",
+        "url": "https://gitlab.com/aapozd"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "artemy-pozdnyakov-b7972b233",
+        "url": "https://www.linkedin.com/in/artemy-pozdnyakov-b7972b233/"
+      },
+      {
+        "network": "Telegram",
+        "username": "aaletov",
+        "url": "https://t.me/aaletov"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Лаборатория Dell Technologies - ВШПИ СПбПУ",
+      "location": "Санкт-Петербург",
+      "description": "Лаборатория Dell Technologies - ВШПИ СПбПУ",
+      "position": "Стажёр",
+      "url": "https://dell.com",
+      "startDate": "2022-02-01",
+      "endDate": "2022-08-01",
+      "summary": "Участвовал в разработке open-source проекта компании Dell - csi-baremetal, CSI-драйвера для Kubernetes, предназначенного для управления физическими дисками в кластере",
+      "highlights": [
+        "Go, Kubernetes, Kind, gRPC",
+        "Разработал тестовую реализацию gRPC-сервиса на Go для поддержки Storage Capacity в драйвере, реализация была протестирована в окружении Kind",
+        "Разработал proposal с планом реализации поддержки Storage Capacity в проекте для снижения нагрузки на использовавшийся кастомный планировщик"
+      ]
+    },
+    {
+      "name": "Linxdatacenter",
+      "location": "Санкт-Петербург",
+      "description": "Linxdatacenter",
+      "position": "Младший разработчик бэкенда",
+      "url": "https://linx.ru",
+      "startDate": "2022-09-01",
+      "endDate": "2023-06-01",
+      "summary": "Участвовал в разработке бэкенда клиентского портала компании Linxdatacenter",
+      "highlights": [
+        "Golang, PostgreSQL, Redis",
+        "Gin, Ginkgo, Jet",
+        "OpenAPI, oapi-codegen, Gitlab CI, JWT, OAuth",
+        "Переработал модуль аутентификации пользователей, что позволило в несколько раз сократить объем кода обработки JWT-токенов, ответственного за ограничение доступа к методам API",
+        "Разработал микросервис для доступа к истории посещения ЦОД",
+        "Реализовал с нуля BDD-тесты на Ginkgo для главного микросервиса, в процессе были исправлены и приведены в соответствие между собой OpenAPI-спецификации различных микросервисов, что позволило согласовать логику данных сервисов и фронтенда",
+        "Внедрил генерацию Go-типов по спецификации OpenAPI, благодаря чему ускорился процесс разработки новых функциональностей",
+        "Унифицировал пайплайн Gitlab CI. В результате, был получен единый для всех микросервисов клиентского портала процесс непрерывной интеграции нового кода",
+        "Участвовал в разработке сервиса, расширяющего функциональность CRM-системы компании, что позволило автоматизировать ряд процессов отдела продаж"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Санкт-Петербургский политехнический университет им. Петра Великого",
+      "url": "https://www.spbstu.ru/",
+      "area": "Программная инженерия",
+      "studyType": "Бакалавр",
+      "startDate": "2020-09-01",
+      "endDate": "2024-07-01",
+      "score": "4.26",
+      "courses": [
+        "Введение в машинное обучение (Python)",
+        "Математическая статистика (Python)",
+        "Нейронные сети и глубокое обучение (Python)",
+        "Базы данных (SQL)",
+        "Вычислительная математика (Python)",
+        "Математические модели (Python)"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Back-end development",
+      "level": "Master",
+      "keywords": [
+        "Microservices",
+        "REST",
+        "OpenAPI",
+        "gRPC",
+        "JWT",
+        "OAuth",
+        "Git"
+      ]
+    },
+    {
+      "name": "ML + Analitics",
+      "level": "Intermediate",
+      "keywords": [
+        "Sklearn",
+        "Tensorflow",
+        "Keras",
+        "pandas",
+        "numpy",
+        "scipy",
+        "matplotlib"
+      ]
+    },
+    {
+      "name": "Database Management",
+      "level": "Master",
+      "keywords": [
+        "SQL",
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    {
+      "name": "Testing",
+      "level": "Intermediate",
+      "keywords": [
+        "TDD",
+        "BDD",
+        "Unit testing"
+      ]
+    },
+    {
+      "name": "Teamwork",
+      "level": "Intermediate",
+      "keywords": [
+        "Agile",
+        "Scrum",
+        "Confluence",
+        "Jira"
+      ]
+    },
+    {
+      "name": "Programming languages",
+      "keywords": [
+        "Python",
+        "Go",
+        "C++",
+        "Bash",
+        "LaTeX"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Russian",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Upper intermediate"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Классификатор болезней растений",
+      "url": "https://drive.google.com/file/d/1KlmD0ReghzGh0-9VH6kiTnjh76DOb4j9/view",
+      "description": "Классификатор болезней томатов на основе свёрточной нейронной сети. Курсовая работу по курсу \"Глубокое обучение\" в СПБПУ",
+      "highlights": [
+        "Построил нейронную сеть с помощью Tensorflow Keras",
+        "На вход модели поступает изображение растения и признаки Харалика, отображающие текстурные особенности изображения",
+        "Свёрточная нейронная сеть обрабатывает изображение и излекает из него высокоуровневые признаки",
+        "Многослойный перцептрон обрабатывает признаки Харалика",
+        "Выходы CNN и MLP объединяются. В результате работы было установлено, что точность модели (0.84) при совместном использовании подходов на основе CNN и обычной классификации в линейно неразделимой выборке с помощью MLP, оказывается выше, чем при использовании данных моделей по отдельности"
+      ],
+      "startDate": "2024-02-09",
+      "endDate": "2024-04-15",
+      "type": "coursework"
+    },
+    {
+      "name": "Анализ стационарных решений мат. модели",
+      "description": "Программа для анализа динамической математической модели, заданной системой дифференциальных уравнений",
+      "highlights": [
+        "Получены стационаные точки модели, исследована зависимость стационарных решений от заданного параметра",
+        "Определены точки вещественной и комплексной бифуркации для различных параметров модели",
+        "Библиотека numpy использовалась для вычислительной части работы - вычисления собственных значений матрицы Якоби системы и нахождения корней уравнения, задающего стационарные точки"
+      ],
+      "startDate": "2022-02-09",
+      "endDate": "2022-05-01",
+      "type": "coursework"
+    },
+    {
+      "name": "План реализации Storage Capacity в драйвере csi-baremetal",
+      "url": "https://github.com/dell/csi-baremetal/blob/8085a0a2b61703f6646f68684c31e6cc1c8f815f/docs/proposals/storage-capacity-proposal.md",
+      "type": "contribution",
+      "startDate": "2022-03-01",
+      "endDate": "2022-08-01"
+    },
+    {
+      "name": "Моделирование СМО",
+      "description": "Курсовая работа по курсу \"Архитектура программных систем\" в СПбПУ",
+      "highlights": [
+        "Спроектировал систему массового обслуживания с заданными параметрами",
+        "Разработал программу для имитационного моделирования СМО с заданными дисциплинами отказа и постановки на обслуживание",
+        "Реализовал REST API сервис на основе разработанной программы",
+        "Разработал фронтенд для приложения с использованием фреймворка React"
+      ],
+      "keywords": [
+        "Система массового обслуживания",
+        "Queueing system",
+        "Имитационное моделирование",
+        "Simulation modeling",
+        "Go",
+        "OpenAPI",
+        "React"
+      ],
+      "url": "https://github.com/aaletov/go-smo",
+      "startDate": "2022-09-15",
+      "endDate": "2022-11-17",
+      "type": "coursework"
+    },
+    {
+      "name": "Система автоматизации работы больницы",
+      "description": "Курсовая работа по курсу \"Объектно-ориентированное программирование\" в СПбПУ",
+      "highlights": [
+        "Разработал веб-приложение на языке Java, позволяющее автоматировать работу больницы. Бэкенд написан с использованием паттерна MVC и фреймворка Spring, фронтенд использует фреймворк Vaadin"
+      ],
+      "keywords": [
+        "Java",
+        "Spring",
+        "Vaadin",
+        "PostgreSQL"
+      ],
+      "url": "https://github.com/aaletov/spring-cs",
+      "startDate": "2022-02-22",
+      "endDate": "2022-05-28",
+      "type": "coursework"
+    }
+  ],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2017-12-24T15:53:00"
+  }
+}

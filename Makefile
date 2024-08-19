@@ -16,4 +16,7 @@ md:
 	npm run build
 
 latex:
-	cd templates && lualatex --output-directory=../resume/ru template.tex
+	cd templates && \
+	lualatex \
+		--output-directory=../resume/ds/ru \
+		"\\def\\resumeFile{../resume/ds/ru/resume.json} \\input{template.tex}"
