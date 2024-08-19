@@ -21,6 +21,8 @@
 \usepackage{changepage}
 \usepackage{ifthen}
 
+\usepackage{setspace}
+\setstretch{0.8}
 
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
@@ -52,7 +54,7 @@
 
 \titleformat{\subsubsection}[runin]{
   \vspace{-4pt}\bfseries\raggedright\normalsize
-}{}{0em}{}[\vspace{-5pt}]
+}{}{0em}{}[]
 
 
 %-------------------------
@@ -69,14 +71,14 @@
         }{
             #4, #2
         }
-    }
+    } ~\\[5pt]
     \ifthenelse{\equal{#3}{}}{}{
-        \\[5pt]#3 ~\\
+        #3 ~\\
     }
 }
 
 \newcommand{\resumeExperienceHighlight}[1]{
-  \item #1\vspace{-3pt}
+  \item #1
 }
 
 \newenvironment{experienceHighlights}{

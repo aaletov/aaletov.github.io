@@ -83,18 +83,19 @@ function make_education_heading (education)
 end
 
 function make_education_courses (education)
-    local item_list_start = "\\begin{educationHighlights}"
-    local item_list_end = "\\end{educationHighlights}"
     local courses = ""
     for i, course in ipairs(education.courses) do
-        courses = courses .. string.format("\\resumeExperienceHighlight{%s}", course)
+        courses = courses .. string.format("%s", course)
+        if i ~= table.getn(resumeJSON.skills) then
+            courses = courses .. ", "
+        end
     end
-    local str_courses = table.concat({"\\subsubsection{Курсы:}", item_list_start, courses, item_list_end}, " ")
+    local str_courses = table.concat({"\\subsubsection{Курсы}:", courses}, " ")
     return str_courses
 end
 
 function get_education (resumeJSON)
-    local education = table.concat({make_education_heading(resumeJSON.education[1]), make_education_courses(resumeJSON.education[1])}, " ")
+    local education = make_education_heading(resumeJSON.education[1])
     texio.debug_nl(education)
     return education
 end
@@ -114,11 +115,11 @@ function make_project_highlights (project)
     end
     local item_list_start = "\\begin{projectHighlights}"
     local item_list_end = "\\end{projectHighlights}"
-    local highlights = string.format("\\resumeExperienceHighlight{%s}", project.description)
+    local highlights = ""
     for i, highlight in ipairs(project.highlights) do
         highlights = highlights .. string.format("\\resumeExperienceHighlight{%s}", highlight)
     end
-    local str_highlights = table.concat({item_list_start, highlights, item_list_end}, " ")
+    local str_highlights = table.concat({project.description, item_list_start, highlights, item_list_end}, " ")
     return str_highlights
 end
 
