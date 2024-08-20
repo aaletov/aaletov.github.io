@@ -15,3 +15,9 @@ markdown.compile(
     path.join(RESUME_DIR, "ds", "ru", "resume.json"),
     path.join(RESUME_DIR, "ds", "ru", "resume.md")
 );
+
+markdown.compile(
+    path.join(TEMPLATES_DIR, "template.md.mustache"),
+    path.join(RESUME_DIR, "python-backend", "ru", "resume.json"),
+    path.join(RESUME_DIR, "python-backend", "ru", "resume.md")
+);

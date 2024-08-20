@@ -19,4 +19,4 @@ latex:
 	cd templates && \
 	lualatex \
 		--output-directory=../resume/ds/ru \
-		"\\def\\resumeFile{../resume/ds/ru/resume.json} \\input{template.tex}"
+		"\\def\\resumeFilePath{../resume/ds/ru/resume.json} \\input{template.tex}"
