@@ -82,7 +82,7 @@
 }
 
 \newenvironment{experienceHighlights}{
-    \begin{itemize}[noitemsep, nosep]
+    \begin{itemize}[noitemsep, nosep, leftmargin=1em]
 }{
     \end{itemize}
 }
@@ -141,26 +141,26 @@ resumeJSON = readResume(resumeFile)
 
 %-----------ABOUT ME------------
 \section{О себе}
-\begin{adjustwidth}{0.15in}{}
+\begin{adjustwidth}{0.05in}{}
     \directlua{ tex.print(resumeJSON.basics.summary) }
 \end{adjustwidth}
 
 %-----------EDUCATION-----------
 \section{Образование}
-\begin{adjustwidth}{0.15in}{}
+\begin{adjustwidth}{0.05in}{}
     \directlua{ tex.print(get_education(resumeJSON)) }
 \end{adjustwidth}
 
 
 %-----------EXPERIENCE-----------
 \section{Опыт}
-\begin{adjustwidth}{0.15in}{}
+\begin{adjustwidth}{0.05in}{}
     \directlua{ tex.print(get_jobs(resumeJSON)) }
 \end{adjustwidth}
 
 %-----------PROJECTS-----------
 \section{Проекты}
-\begin{adjustwidth}{0.15in}{}
+\begin{adjustwidth}{0.05in}{}
     \directlua{ tex.print(get_projects(resumeJSON)) }
 \end{adjustwidth}
 

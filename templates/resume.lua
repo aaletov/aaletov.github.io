@@ -113,6 +113,9 @@ function make_project_highlights (project)
     if project.highlights == nil then
         return ""
     end
+    if table.getn(project.highlights) == 0 then
+        return project.description
+    end
     local item_list_start = "\\begin{projectHighlights}"
     local item_list_end = "\\end{projectHighlights}"
     local highlights = ""
