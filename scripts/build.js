@@ -6,12 +6,6 @@ RESUME_DIR = path.join(process.env.INIT_CWD, "resume")
 
 markdown.compile(
     path.join(TEMPLATES_DIR, "template.md.mustache"),
-    path.join(RESUME_DIR, "ru", "resume.json"),
-    path.join(RESUME_DIR, "ru", "resume.md")
-);
-
-markdown.compile(
-    path.join(TEMPLATES_DIR, "template.md.mustache"),
     path.join(RESUME_DIR, "ds", "ru", "resume.json"),
     path.join(RESUME_DIR, "ds", "ru", "resume.md")
 );
