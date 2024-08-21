@@ -152,6 +152,14 @@
         "Bash",
         "LaTeX"
       ]
+    },
+    {
+      "name": "Other",
+      "keywords": [
+        "Gitlab CI",
+        "Docker",
+        "Linux"
+      ]
     }
   ],
   "languages": [

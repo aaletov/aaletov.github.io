@@ -74,3 +74,4 @@ https://github.com/aaletov/spring-cs
 - Testing:  TDD,  BDD,  Unit testing, 
 - Teamwork:  Agile,  Scrum,  Confluence,  Jira, 
 - Programming languages:  Python,  Go,  C++,  Bash,  LaTeX, 
+- Other:  Gitlab CI,  Docker,  Linux, 
