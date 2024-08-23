@@ -35,14 +35,14 @@ Telegram: https://t.me/aaletov
 
 
 # Проекты
-## Консольный чат поверх nats
+## Консольный чат поверх nats (Go)
 Июнь 2023 - Август 2023
 Реализация консольного p2p чата на Go, работающего поверх брокера сообщений nats
 https://github.com/aaletov/nats-chat
 - Разработал демон и CLI на Go для получения сообщений в неперсистентном режиме nats
 - Написал BDD-тесты на Python
 
-## Система рассылки на платформе ВКонтакте
+## Система рассылки на платформе ВКонтакте (Python)
 Сентябрь 2023 - Апрель 2024
 Командный проект - чат-бот на Python для рассылок с системой авторизации на основе приглашений
 https://github.com/users/aaletov/projects/2
@@ -56,22 +56,22 @@ https://github.com/users/aaletov/projects/2
 
 https://github.com/dell/csi-baremetal/blob/8085a0a2b61703f6646f68684c31e6cc1c8f815f/docs/proposals/storage-capacity-proposal.md
 
-## Моделирование СМО
+## Моделирование СМО (Go)
 Сентябрь 2022 - Ноябрь 2022
 Модель СМО в виде клиент-серверного приложения (Golang, React, REST)
 https://github.com/aaletov/go-smo
 
-## Система автоматизации работы больницы
+## Система автоматизации работы больницы (Java)
 Февраль 2022 - Май 2022
 Разработал веб-приложение на языке Java, позволяющее автоматировать работу больницы. Бэкенд написан с использованием паттерна MVC и фреймворка Spring, фронтенд использует фреймворк Vaadin
 https://github.com/aaletov/spring-cs
 
 
 # Навыки
-- Back-end development:  Microservices,  REST,  OpenAPI,  gRPC,  JWT,  OAuth,  Git,
-- Frameworks + Tools:  Gin,  Ginkgo,  go-kit,  Jet,  gorm,
-- Database Management:  SQL,  PostgreSQL,  Redis,
-- Testing:  TDD,  BDD,  Unit testing,
-- Teamwork:  Agile,  Scrum,  Confluence,  Jira,
-- Programming languages:  Python,  Go,  C++,  Bash,  LaTeX,
-- Other:  Gitlab CI,  Docker,  Linux,
+- Back-end development:  Microservices,  REST,  OpenAPI,  gRPC,  JWT,  OAuth,  Git, 
+- Frameworks + Tools:  Gin,  Ginkgo,  go-kit,  Jet,  gorm, 
+- Database Management:  SQL,  PostgreSQL,  Redis, 
+- Testing:  TDD,  BDD,  Unit testing, 
+- Teamwork:  Agile,  Scrum,  Confluence,  Jira, 
+- Programming languages:  Python,  Go,  C++,  Bash,  LaTeX, 
+- Other:  Gitlab CI,  Docker,  Linux, 
